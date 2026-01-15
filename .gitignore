@@ -1,0 +1,14 @@
+# Simulation outputs
+*_sim
+*.vcd
+
+# Backup files
+*~
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
+.vscode/
+.devcontainer/
