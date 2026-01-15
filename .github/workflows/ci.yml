@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    name: Run Testbenches
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Icarus Verilog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog
+
+      - name: Verify installation
+        run: |
+          iverilog -V
+          vvp -V
+
+      - name: Run all testbenches
+        run: make sim
+
+      - name: Upload waveforms (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: waveforms
+          path: "**/*.vcd"
+          retention-days: 7
