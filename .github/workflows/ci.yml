@@ -30,13 +30,12 @@ jobs:
             mkdir -p ~/apt-cache
             sudo apt-get update
             sudo apt-get install -y --download-only iverilog
-            cp -r /var/cache/apt/archives/*.deb ~/apt-cache/ 2>/dev/null || true
-            sudo apt-get install -y iverilog
+            cp /var/cache/apt/archives/*.deb ~/apt-cache/ 2>/dev/null || true
           else
             echo "Using cached apt packages"
             sudo cp ~/apt-cache/*.deb /var/cache/apt/archives/ 2>/dev/null || true
-            sudo apt-get install -y iverilog
           fi
+          sudo apt-get install -y iverilog
 
       - name: Verify installation
         run: |
