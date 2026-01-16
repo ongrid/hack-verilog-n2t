@@ -13,6 +13,63 @@ A complete implementation of the **Hack computer** from the [Nand2Tetris](https:
 
 Build the complete Hack computer architecture from first principles — starting with a NAND gate and progressing through combinational logic, sequential circuits, ALU, memory, and finally a working 16-bit CPU — all in synthesizable SystemVerilog.
 
+## 🚀 Quick Start
+
+### Prerequisites
+
+- **Icarus Verilog** (iverilog) - For simulation
+- **Make** - Build automation
+- **GTKWave** (optional) - For viewing waveforms
+
+### Installation
+
+#### Ubuntu/Debian
+```bash
+sudo apt-get update
+sudo apt-get install -y iverilog gtkwave make
+```
+
+#### macOS
+```bash
+brew install icarus-verilog gtkwave
+```
+
+#### Windows
+Use [WSL2](https://docs.microsoft.com/en-us/windows/wsl/) with Ubuntu and follow Ubuntu instructions.
+
+### Running Tests
+
+```bash
+# Run all module tests
+make sim
+
+# Run a specific module test
+cd rtl/nand_gate
+make sim
+
+# View waveforms (after running tests)
+gtkwave nand_gate.vcd
+```
+
+## 📁 Project Structure
+
+```
+hack-verilog-n2t/
+├── rtl/                    # RTL source files
+│   └── nand_gate/         # NAND gate implementation
+│       ├── nand_gate.sv   # Module source
+│       ├── nand_gate_tb.sv # Testbench
+│       └── Makefile       # Build script
+├── docs/                   # Documentation
+│   ├── README.md          # Documentation index
+│   ├── module-specs.md    # Module specifications
+│   ├── testing.md         # Testing strategy
+│   └── templates/         # Module templates
+├── .github/workflows/     # CI/CD configuration
+├── Makefile               # Top-level build script
+└── README.md              # This file
+```
+
 ## 📚 Roadmap
 
 ### Part 1: Hardware
@@ -50,6 +107,19 @@ Build the complete Hack computer architecture from first principles — starting
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome! This is a learning project, so suggestions for improvement are appreciated.
+
+**Before contributing**, please:
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md) for coding standards and workflow
+2. Check [docs/module-specs.md](docs/module-specs.md) for module specifications
+
+### Quick Contribution Guide
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Make your changes following the coding standards
+4. Test thoroughly: `make sim`
+5. Commit with clear messages: `git commit -m "feat: add XOR gate"`
+6. Push and create a Pull Request
 
 ## 📄 License
 
