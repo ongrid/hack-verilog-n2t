@@ -8,6 +8,7 @@ VCD = $(TOP).vcd
 # tool names
 IVERILOG = iverilog
 VVP      = vvp
+VERILATOR = verilator
 
 # targets
 all: sim
@@ -23,8 +24,12 @@ $(SIM): $(SRC) $(TB)
 sim: $(SIM)
 	$(VVP) $(SIM)
 
+# Run Verilator linting
+lint:
+	$(VERILATOR) --lint-only --timing -Wno-fatal $(SRC) $(TB)
+
 # Remove all generated files
 clean:
 	rm -f $(SIM) $(VCD)
 
-.PHONY: all sim clean
+.PHONY: all sim lint clean

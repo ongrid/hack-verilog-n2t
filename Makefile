@@ -42,6 +42,27 @@ clean:
 	done
 	@echo "Done."
 
+# Run Verilator linting on all RTL files
+.PHONY: lint
+lint:
+	@echo "$(YELLOW)========================================$(NC)"
+	@echo "$(YELLOW)Running Verilator linting$(NC)"
+	@echo "$(YELLOW)========================================$(NC)"
+	@failed=0; \
+	for dir in $(SUBDIRS); do \
+		echo ""; \
+		echo "$(YELLOW)>>> $$dir$(NC)"; \
+		$(MAKE) -C $$dir lint || failed=1; \
+	done; \
+	echo ""; \
+	echo "$(YELLOW)========================================$(NC)"; \
+	if [ $$failed -eq 0 ]; then \
+		echo "$(GREEN)All linting checks passed!$(NC)"; \
+	else \
+		echo "$(RED)Some linting checks failed!$(NC)"; \
+		exit 1; \
+	fi
+
 # List all modules
 .PHONY: list
 list:
@@ -57,6 +78,7 @@ help:
 	@echo ""
 	@echo "  make          - Run all testbenches"
 	@echo "  make sim      - Run all testbenches"
+	@echo "  make lint     - Run Verilator linting on all RTL files"
 	@echo "  make clean    - Remove generated files"
 	@echo "  make list     - List all modules"
 	@echo "  make help     - Show this help"
