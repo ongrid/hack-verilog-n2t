@@ -111,7 +111,6 @@ Contributions, issues, and feature requests are welcome! This is a learning proj
 **Before contributing**, please:
 1. Read [CONTRIBUTING.md](CONTRIBUTING.md) for coding standards and workflow
 2. Check [docs/module-specs.md](docs/module-specs.md) for module specifications
-3. Review [docs/testing.md](docs/testing.md) for testing requirements
 
 ### Quick Contribution Guide
 
